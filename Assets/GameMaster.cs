@@ -8,4 +8,9 @@ public class GameMaster : MonoBehaviour {
 		Destroy (player.gameObject);
 		Debug.Log ("Rekt");
 	}
+
+	public static void KillEnemy (Enemy enemy) {
+		Destroy (enemy.gameObject);
+		Debug.Log ("Rekt enemy");
+	}
 }

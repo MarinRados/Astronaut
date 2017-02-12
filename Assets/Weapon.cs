@@ -5,10 +5,11 @@ using UnityEngine;
 public class Weapon : MonoBehaviour {
 
 	public float fireRate = 0;
-	public float Damage = 10;
+	public int Damage = 10;
 	public LayerMask whatToHit;
 
 	public Transform bulletTrailPrefab;
+	public Transform hitPrefab;
 
 	public float effectSpawnRate = 10;
 
@@ -38,16 +39,39 @@ public class Weapon : MonoBehaviour {
 			Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
 		Vector2 firePointPosition = new Vector2 (firePoint.position.x, firePoint.position.y);
 		RaycastHit2D hit = Physics2D.Raycast (firePointPosition, mousePosition-firePointPosition, 100, whatToHit);
-		if (Time.time >= timeToSpawnEffect) {
-			Effect ();
-			timeToSpawnEffect = Time.time + 1 / effectSpawnRate;
-		}
+
 		if (hit.collider != null) {
 			Debug.Log ("We hit something");
+			Enemy enemy = hit.collider.GetComponent<Enemy> ();
+			if (enemy != null) {
+				enemy.DamageEnemy (Damage);
+			}
+		}
+
+		if (Time.time >= timeToSpawnEffect) {
+			Vector3 hitPos;
+
+			if (hit.collider == null)
+				hitPos = (mousePosition - firePointPosition) * 1000;
+			else {
+				hitPos = hit.point;
+				Instantiate (hitPrefab, hitPos, Quaternion.FromToRotation(Vector3.right, hitPos));
+			}
+
+			Effect (hitPos);
+			timeToSpawnEffect = Time.time + 1 / effectSpawnRate;
 		}
 	}
 
-	void Effect() {
-		Instantiate (bulletTrailPrefab, firePoint.position, firePoint.rotation);
+	void Effect(Vector3 hitPos) {
+		Transform trail = Instantiate (bulletTrailPrefab, firePoint.position, firePoint.rotation) as Transform;
+		LineRenderer lr = trail.GetComponent<LineRenderer> (); 
+
+		if (lr != null) {
+			lr.SetPosition (0, firePoint.position);
+			lr.SetPosition (1, hitPos);
+		}
+
+		Destroy (trail.gameObject, 0.06f);
 	}
 }

@@ -1,11 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/EnemyAI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Weapon.cs">
     <Files>
-      <File FileName="Assets/Weapon.cs" Line="21" Column="49" />
-      <File FileName="Assets/Player.cs" Line="7" Column="23" />
-      <File FileName="Assets/GameMaster.cs" Line="9" Column="22" />
-      <File FileName="Assets/EnemyAI.cs" Line="15" Column="28" />
+      <File FileName="Assets/EnemyAI.cs" Line="72" Column="11" />
+      <File FileName="Assets/Weapon.cs" Line="58" Column="87" />
+      <File FileName="Assets/Player.cs" Line="7" Column="2" />
+      <File FileName="Assets/GameMaster.cs" Line="14" Column="28" />
+      <File FileName="Assets/Enemy.cs" Line="8" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
