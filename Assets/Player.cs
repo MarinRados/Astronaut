@@ -19,6 +19,10 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+	void Start() {
+		
+	}
+
 	public void DamagePlayer (int damage) {
 		playerStats.Health -= damage;
 		if (playerStats.Health <= 0) {

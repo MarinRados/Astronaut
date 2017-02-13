@@ -41,7 +41,6 @@ public class Weapon : MonoBehaviour {
 		RaycastHit2D hit = Physics2D.Raycast (firePointPosition, mousePosition-firePointPosition, 100, whatToHit);
 
 		if (hit.collider != null) {
-			Debug.Log ("We hit something");
 			Enemy enemy = hit.collider.GetComponent<Enemy> ();
 			if (enemy != null) {
 				enemy.DamageEnemy (Damage);
