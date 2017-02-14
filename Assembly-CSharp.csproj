@@ -50,8 +50,10 @@
      <Compile Include="Assets\Enemy.cs" />
      <Compile Include="Assets\EnemyAI.cs" />
      <Compile Include="Assets\GameMaster.cs" />
+     <Compile Include="Assets\LevelManager.cs" />
      <Compile Include="Assets\MoveTrail.cs" />
      <Compile Include="Assets\Player.cs" />
+     <Compile Include="Assets\WaveCountGameOver.cs" />
      <Compile Include="Assets\WaveSpawner.cs" />
      <Compile Include="Assets\WaveUI.cs" />
      <Compile Include="Assets\Weapon.cs" />

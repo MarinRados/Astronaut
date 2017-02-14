@@ -21,8 +21,9 @@ public class WaveSpawner : MonoBehaviour {
 
 	public Wave[] waves;
 	public int nextWave = 0;
-	public int counter = 1;
+	public static int counter;
 
+	public Text wavesSurvived;
 	public Text waveCountText;
 
 	public Transform[] spawnPoints;
@@ -35,6 +36,7 @@ public class WaveSpawner : MonoBehaviour {
 	public SpawnState state = SpawnState.COUNTING;
 
 	void Start() {
+		counter = 1;
 		waveCountdown = timeBetweenWaves;
 		waveCountText.text = counter.ToString();
 	}

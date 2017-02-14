@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class GameMaster : MonoBehaviour {
 
+	public static GameMaster gm;
+	private static LevelManager levelManager;
+
+	void Awake () {
+		if (gm == null) {
+			gm = GameObject.FindGameObjectWithTag ("GM").GetComponent<GameMaster> ();
+		}
+	}
+
 	public static void KillPlayer(Player player) {
-		Destroy (player.gameObject);
+		levelManager = GameObject.FindObjectOfType<LevelManager>();
+		print("Trigger");
+		levelManager.LoadLevel("GameOver");
 	}
 
 	public static void KillEnemy (Enemy enemy) {
