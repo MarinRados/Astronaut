@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour {
 
@@ -19,7 +20,10 @@ public class WaveSpawner : MonoBehaviour {
 	}
 
 	public Wave[] waves;
-	private int nextWave = 0;
+	public int nextWave = 0;
+	public int counter = 1;
+
+	public Text waveCountText;
 
 	public Transform[] spawnPoints;
 
@@ -28,10 +32,11 @@ public class WaveSpawner : MonoBehaviour {
 
 	private float searchCountdown = 1f;
 
-	private SpawnState state = SpawnState.COUNTING;
+	public SpawnState state = SpawnState.COUNTING;
 
 	void Start() {
 		waveCountdown = timeBetweenWaves;
+		waveCountText.text = counter.ToString();
 	}
 
 	void Update () {
@@ -39,6 +44,7 @@ public class WaveSpawner : MonoBehaviour {
 		if (state == SpawnState.WAITING) {
 			if (!EnemyIsAlive ()) {
 				WaveCompleted ();
+				UpdateScore ();
 				return;
 			} 
 			else {
@@ -60,8 +66,6 @@ public class WaveSpawner : MonoBehaviour {
 
 		state = SpawnState.COUNTING;
 		waveCountdown = timeBetweenWaves;
-
-
 
 		if (nextWave + 1 > waves.Length - 1) {
 			nextWave = 0;
@@ -85,14 +89,13 @@ public class WaveSpawner : MonoBehaviour {
 	IEnumerator SpawnWave (Wave _wave) {
 		Debug.Log ("Spawning wave");
 		state = SpawnState.SPAWNING;
-		_wave.count++;
-		_wave.rate += 0.5f;
+
 		for (int i = 0; i < _wave.count; i++) {
 			var randomEnemy = _wave.enemies [Random.Range (0, 3)];
 			SpawnEnemy (randomEnemy);
 			yield return new WaitForSeconds (1f / _wave.rate);
 		}
-
+		_wave.count++;
 		state = SpawnState.WAITING;
 
 		yield break;
@@ -103,5 +106,11 @@ public class WaveSpawner : MonoBehaviour {
 		Transform _sp = spawnPoints [Random.Range (0, spawnPoints.Length)];
 		Instantiate (_enemy, _sp.position, _sp.rotation);
 
+	}
+
+	void UpdateScore ()
+	{
+		counter++;
+		waveCountText.text = counter.ToString();
 	}
 }

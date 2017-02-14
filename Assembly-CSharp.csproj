@@ -53,6 +53,7 @@
      <Compile Include="Assets\MoveTrail.cs" />
      <Compile Include="Assets\Player.cs" />
      <Compile Include="Assets\WaveSpawner.cs" />
+     <Compile Include="Assets\WaveUI.cs" />
      <Compile Include="Assets\Weapon.cs" />
      <None Include="Assets\AstarPathfindingEditor\Editor\EditorAssets\Materials\Navmesh.shader" />
      <None Include="Assets\Plugins\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
