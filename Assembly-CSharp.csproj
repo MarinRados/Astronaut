@@ -46,8 +46,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AudioManager.cs" />
+     <Compile Include="Assets\MenuManager.cs" />
      <Compile Include="Assets\Scripts\ArmRotation.cs" />
+     <Compile Include="Assets\Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\EnemyAI.cs" />
      <Compile Include="Assets\Scripts\GameMaster.cs" />
