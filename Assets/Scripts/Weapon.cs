@@ -16,12 +16,22 @@ public class Weapon : MonoBehaviour {
 	float timeToSpawnEffect = 0;
 	Transform firePoint;
 
+	public string weaponShootSound = "Laser";
+
+	AudioManager audioManager;
 
 	// Use this for initialization
 	void Awake () {
 		firePoint = transform.FindChild ("FirePoint");
 		if (firePoint == null) {
 			Debug.LogError ("No fire point");
+		}
+	}
+
+	void Start() {
+		audioManager = AudioManager.instance;
+		if (audioManager == null) {
+			Debug.LogError ("No AM");
 		}
 	}
 	
@@ -72,5 +82,7 @@ public class Weapon : MonoBehaviour {
 		}
 
 		Destroy (trail.gameObject, 0.06f);
+
+		audioManager.PlaySound (weaponShootSound);
 	}
 }
